@@ -6,7 +6,7 @@
 
 **Created:** 2026
 
-**Version:** 0.1
+**Version:** 0.2
 
 ---
 
@@ -29,6 +29,10 @@ Execution engines produce artifacts.
 ODE produces Objective Reports.
 
 An Objective Report is the canonical representation of what an intelligent system currently believes, why it believes it, what changed during the latest iteration, and what should happen next.
+
+An Objective Report is also an accountability artifact.
+
+It must explain whether activity became objective progress, not merely whether execution completed.
 
 ---
 
@@ -102,9 +106,22 @@ Reports should remain understandable without reading implementation details.
 
 ---
 
+## Anti-Drift
+
+Reports should make objective drift visible.
+
+They should distinguish:
+
+- completed work,
+- local success,
+- objective progress,
+- and objective drift.
+
+---
+
 # Report Structure
 
-Every Objective Report consists of five logical sections.
+Every Objective Report consists of seven logical sections.
 
 ```text
 Metadata
@@ -119,7 +136,15 @@ Execution Summary
 
 ↓
 
+Decision Summary
+
+↓
+
 Evaluation
+
+↓
+
+Objective Evolution
 
 ↓
 
@@ -213,6 +238,10 @@ evaluation:
 
   objective_contribution:
 
+  surface_success:
+
+  objective_progress:
+
   positive_observations:
 
   negative_observations:
@@ -225,6 +254,22 @@ evaluation:
 ```
 
 Evaluation measures learning rather than completion.
+
+---
+
+# Success vs Progress
+
+Objective Reports must distinguish task success from objective progress.
+
+Task success means the selected action completed.
+
+Objective progress means the system moved closer to the objective or improved its understanding of the objective.
+
+A failed action may still produce objective progress if it reveals important evidence.
+
+A successful action may still indicate drift if it improves a proxy while harming the objective.
+
+This distinction is required for ODE-compatible reporting.
 
 ---
 
@@ -244,6 +289,8 @@ decision:
   reasoning:
 
   expected_contribution:
+
+  commitment:
 ```
 
 This preserves deliberation history.
