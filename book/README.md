@@ -187,53 +187,69 @@ The RFCs standardize the ideas.
 Recommended order:
 
 ```text
+Part I — Thinking
+
 Chapter 1
 The Missing Layer of Intelligence
+book/chapter-01-the-missing-layer-of-intelligence.md
 
 ↓
 
 Chapter 2
-Thinking in Objectives
+The Shape of Thought
+book/chapter-02-the-shape-of-thought.md
 
 ↓
 
 Chapter 3
-Objectives vs Tasks
+Objectives and Tasks
+book/chapter-03-objectives-and-tasks.md
 
 ↓
 
 Chapter 4
 Why Reflection Is Not Enough
+book/chapter-04-why-reflection-is-not-enough.md
 
 ↓
 
+Part II — ODE
+
 Chapter 5
 Objective Memory
+book/chapter-05-objective-memory.md
 
 ↓
 
 Chapter 6
 Deliberation
+book/chapter-06-deliberation.md
 
 ↓
 
 Chapter 7
 The ODE Kernel
+book/chapter-07-the-ode-kernel.md
 
 ↓
 
 Chapter 8
 Objective Reports
+book/chapter-08-objective-reports.md
 
 ↓
 
+Part III — Applications
+
 Chapter 9
 Objective-Driven Systems
+book/chapter-09-objective-driven-systems.md
 
 ↓
 
 Chapter 10
 The Future of Objective-Driven Intelligence
+book/chapter-10-the-future-of-objective-driven-intelligence.md
 ```
 
 RFCs may be read in parallel for readers interested in implementation.
