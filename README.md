@@ -325,12 +325,18 @@ Objective Loop
 
 Each module is intentionally independent.
 
-They may later become:
+They may become:
 
 - Prompt Skills
 - Sub Agents
 - MCP Tools
 - Runtime Components
+
+This repository already includes one experimental skill artifact:
+
+- `skills/objective-deliberation/` - a Codex-compatible skill for post-work objective deliberation.
+
+See `docs/skills.md` for the current skill runtime notes.
 
 ---
 
@@ -340,9 +346,16 @@ ODE is currently an experimental research project.
 
 The first milestone focuses on defining the theory, vocabulary, and RFC foundation of objective-driven intelligence.
 
-Implementations may later appear as prompts, skills, runtimes, or agents.
+The project now also contains an early skill implementation of Deliberation:
 
-The core asset is the control theory itself.
+- `skills/objective-deliberation/SKILL.md` defines the agent-facing workflow.
+- `skills/objective-deliberation/agents/openai.yaml` defines optional OpenAI/Codex UI metadata.
+
+This skill is not the ODE runtime.
+
+It is a concrete, portable artifact for exercising one part of the ODE loop: evaluating recent work against the real objective and choosing the next objective-aligned decision.
+
+The core asset remains the control theory itself.
 
 ---
 
@@ -424,9 +437,9 @@ Prompt Runtime
 
 Skill Runtime
 
+- Objective Deliberation Skill
 - Objective Loop Skill
 - Objective Memory Skill
-- Deliberation Skill
 - Runtime handoff patterns
 
 ---
@@ -466,19 +479,22 @@ ode/
 ├── RFC/
 │   ├── 0001-objective-driven-evolution.md
 │   ├── 0002-Objective-Memory.md
-│   └── 0003-Deliberation.md
+│   ├── 0003-Deliberation.md
+│   ├── 0004-ODE-Kernel.md
+│   ├── 0005-ODE-Kernel-API.md
+│   ├── 0006-Objective-Report.md
+│   └── 0007-ODE-Protocol.md
 
 ├── docs/
-
-├── prompts/
+│   ├── architecture.md
+│   ├── ODE-architecture.md
+│   ├── objective-loop.md
+│   └── skills.md
 
 ├── skills/
+│   └── objective-deliberation/
 
-├── runtime/
-
-├── examples/
-
-└── experiments/
+└── book/
 ```
 
 ---

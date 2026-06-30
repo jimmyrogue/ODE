@@ -104,6 +104,10 @@ Execution is not the default.
 
 Execution is the result of successful deliberation.
 
+The current repository includes `skills/objective-deliberation/` as an experimental implementation of this step for existing agent workflows.
+
+It produces an `objective_deliberation_report` that challenges the inferred objective, scores alignment, detects drift or proxy optimization, and recommends the next objective-aligned action.
+
 ---
 
 # Step 4 — Decision / Commitment

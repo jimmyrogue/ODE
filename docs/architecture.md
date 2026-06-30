@@ -52,6 +52,10 @@ It is not the execution engine.
 
 It coordinates objective state, deliberation, feedback, evaluation, objective updates, and reports.
 
+The current repository includes one concrete skill artifact, `skills/objective-deliberation/`, that exercises Deliberation Mode in an existing agent environment.
+
+That skill is an implementation artifact, not the Kernel itself.
+
 ---
 
 # Runtime Modes
@@ -107,3 +111,18 @@ An ODE-compatible system should preserve these invariants.
 - Objective changes must preserve lineage and evidence.
 - Objective Reports must close each loop.
 - Objective Memory must preserve direction, not just context.
+
+---
+
+# Implementation Artifacts
+
+ODE concepts may appear as prompts, skills, subagents, MCP tools, runtime components, or native agents.
+
+The current implementation artifact is documented in `docs/skills.md`.
+
+Its boundary is important:
+
+- `SKILL.md` defines the portable agent-facing workflow.
+- `agents/openai.yaml` defines optional OpenAI/Codex UI metadata.
+- The skill can guide a single deliberation step.
+- The skill does not provide persistent Objective Memory or a full ODE Kernel.
