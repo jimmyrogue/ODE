@@ -6,7 +6,7 @@
 
 **Created:** 2026
 
-**Version:** 0.1
+**Version:** 0.2
 
 ---
 
@@ -37,6 +37,10 @@ ODE introduces **Deliberation**.
 Deliberation is the process by which an intelligent system evaluates possible future actions before committing to one.
 
 Unlike planning, which determines *how* to accomplish a task, deliberation determines *whether an action should be taken at all*, *whether it serves the current objective*, and *whether a better alternative exists*.
+
+Deliberation may select an action.
+
+It may also reject an action, defer action, request more evidence, or update the objective.
 
 Execution changes the world.
 
@@ -110,6 +114,10 @@ Execution is not the default.
 
 Execution is the consequence of successful deliberation.
 
+An action should be treated as a commitment of attention, time, and consequence.
+
+Deliberation exists to decide whether that commitment is justified.
+
 ---
 
 # Deliberation as a Runtime Mode
@@ -136,6 +144,12 @@ An ODE-compatible agent should enter Deliberation Mode whenever it is about to:
 - remove functionality,
 - make an irreversible decision,
 - or continue a loop after feedback.
+
+The depth of deliberation should scale with consequence.
+
+Small reversible actions may require light deliberation.
+
+High-cost, ambiguous, irreversible, or objective-changing actions require deeper deliberation.
 
 ---
 
@@ -247,6 +261,49 @@ Examples include:
 No single metric should dominate every decision.
 
 Deliberation exists precisely because real-world decisions are multi-objective.
+
+---
+
+# The Power to Refuse
+
+Deliberation must be able to produce a negative decision.
+
+An ODE-compatible system may decide:
+
+- do not execute,
+- postpone execution,
+- gather more evidence,
+- revise the candidate action,
+- or update the objective before acting.
+
+This refusal capability is required.
+
+Without it, Deliberation degenerates into justification for execution.
+
+The system must be able to say:
+
+> This action is possible, but not aligned enough to deserve execution.
+
+---
+
+# Deliberation Commitment
+
+When Deliberation selects an action, it should produce a commitment record.
+
+The commitment record should preserve:
+
+- selected action,
+- objective served,
+- evidence used,
+- assumptions accepted,
+- alternatives rejected,
+- expected contribution,
+- known risks,
+- and conditions that should trigger reconsideration.
+
+This record becomes the bridge between Deliberation and later Evaluation.
+
+Reflection can only determine whether Deliberation was sound if the original commitment is preserved.
 
 ---
 
