@@ -36,7 +36,7 @@ Could the system do the thing?
 
 Could it write the code?
 
-Could it call the API?
+Could it operate the external system?
 
 Could it operate the tool?
 
@@ -80,7 +80,7 @@ For example:
 - summarize this document
 - generate this file
 - run this test
-- call this API
+- use this tool
 
 In these cases, the objective is mostly contained inside the task.
 
@@ -134,7 +134,7 @@ The task is not the objective.
 
 The task is only one possible action in pursuit of the objective.
 
-This distinction is the beginning of ODE.
+This distinction is the beginning of objective thinking.
 
 ---
 
@@ -154,7 +154,7 @@ They less often ask:
 
 This is the missing layer.
 
-ODE calls it the **Objective Layer**.
+Call it the **Objective Layer**.
 
 The Objective Layer is responsible for preserving, evaluating, and evolving the objective across time.
 
@@ -184,7 +184,7 @@ A system can complete many tasks while making no meaningful progress.
 
 A system can optimize local artifacts while degrading the larger objective.
 
-This is why ODE begins with a simple claim:
+This leads to a simple claim:
 
 > **Execution without objective alignment is merely efficient movement.**
 
@@ -214,7 +214,7 @@ But reflection looks backward.
 
 It evaluates what already happened.
 
-ODE requires something else.
+Intelligence requires something else.
 
 Before acting, an intelligent system must ask:
 
@@ -278,13 +278,13 @@ A feature improves completeness.
 
 A benchmark improves performance.
 
-A prompt improves output quality.
+A wording change improves output quality.
 
 But over time, the system may forget what it was truly trying to achieve.
 
 This is especially dangerous for autonomous agents because they can continue acting without noticing that the target has shifted.
 
-ODE treats Objective Drift as a first-class failure mode.
+Objective Drift should be treated as a first-class failure mode.
 
 ---
 
@@ -311,15 +311,15 @@ They require evaluation.
 
 They require continuity.
 
-This is why ODE introduces Objective Memory, Deliberation, the ODE Kernel, and Objective Reports.
+This is why the Objective Layer requires more than execution.
 
-Each exists to support the Objective Layer.
+It requires memory, deliberation, evaluation, and continuity.
 
 ---
 
-# 10. The ODE Answer
+# 10. The Objective-Driven Answer
 
-ODE proposes that an intelligent system should not be organized primarily around tasks.
+An intelligent system should not be organized primarily around tasks.
 
 It should be organized around objectives.
 
@@ -365,9 +365,9 @@ When agents are objective-driven, deliberation chooses the next meaningful actio
 
 When agents are task-driven, the final output is often an artifact.
 
-When agents are objective-driven, the final output is an Objective Report.
+When agents are objective-driven, the final output is an accountable record of progress.
 
-This is the shift ODE attempts to define.
+This is the shift this book attempts to explain.
 
 ---
 
@@ -381,10 +381,10 @@ It is not another reflection step.
 
 It is the layer that preserves and evolves the objective itself.
 
-ODE begins with this claim:
+This book begins with this claim:
 
 > **The future of intelligent systems depends less on whether they can act, and more on whether they can remain aligned with what is worth acting toward.**
 
 That is the missing layer.
 
-That is the role of ODE.
+That is the role of the missing layer.
