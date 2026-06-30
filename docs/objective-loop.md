@@ -25,6 +25,10 @@ Objective Formalization
 
 ↓
 
+Deliberation
+
+↓
+
 Design
 
 ↓
@@ -38,10 +42,6 @@ Feedback Collection
 ↓
 
 Objective Evaluation
-
-↓
-
-Decision Filter
 
 ↓
 
@@ -84,7 +84,23 @@ Produce:
 
 ---
 
-# Step 3 — Design
+# Step 3 — Deliberation
+
+Evaluate candidate actions before design and execution.
+
+Deliberation asks:
+
+- Should this action be performed at all?
+- Does it contribute to the objective?
+- Is there another action with higher impact?
+- What trade-offs does this action introduce?
+- Is the available evidence strong enough?
+
+Decision Filter is an internal part of Deliberation, responsible for choosing among candidate actions.
+
+---
+
+# Step 4 — Design
 
 Generate multiple candidate approaches.
 
@@ -97,7 +113,7 @@ Each design should estimate:
 
 ---
 
-# Step 4 — Execution
+# Step 5 — Execution
 
 Delegate implementation to the execution agent.
 
@@ -111,7 +127,7 @@ Execution may involve:
 
 ---
 
-# Step 5 — Feedback Collection
+# Step 6 — Feedback Collection
 
 Collect all observable evidence.
 
@@ -127,7 +143,7 @@ Evidence includes:
 
 ---
 
-# Step 6 — Objective Evaluation
+# Step 7 — Objective Evaluation
 
 Ask:
 
@@ -140,27 +156,6 @@ Task Success
 ≠
 
 Objective Success
-
----
-
-# Step 7 — Decision Filter
-
-Before another iteration, evaluate all possible actions.
-
-Decision priorities:
-
-1. highest objective contribution
-2. lowest unnecessary complexity
-3. lowest long-term maintenance cost
-
-Possible outputs:
-
-- Continue
-- Stop
-- Revise
-- Update Objective
-- Rollback
-- Ask User
 
 ---
 
@@ -198,7 +193,7 @@ objective_drift:
 
 feedback_summary:
 
-decision:
+deliberation_decision:
 
 next_action:
 
@@ -220,6 +215,10 @@ Before every iteration, the controller asks:
 > Did the last action move closer to that objective?
 
 > Am I optimizing a proxy instead of the real objective?
+
+> What action deserves execution?
+
+> Should I do this at all?
 
 > Is there a higher-impact action available?
 

@@ -1,8 +1,14 @@
 # ODE — Objective Driven Evolution
 
+> **ODE is a control theory for objective-driven intelligent systems.**
+
 > **Most AI agents optimize tasks. ODE optimizes objectives.**
 
-ODE (Objective Driven Evolution) is an open framework for building **objective-driven AI agents**.
+ODE (Objective Driven Evolution) is a control paradigm for building **objective-driven intelligence**.
+
+It is not an agent framework, a prompt library, or a skill.
+
+ODE defines how intelligent systems preserve objectives, deliberate before action, evaluate progress, and evolve direction over time.
 
 Instead of asking an agent:
 
@@ -11,6 +17,57 @@ Instead of asking an agent:
 ODE continuously asks:
 
 > *"Did you move closer to the real objective?"*
+
+---
+
+# Why Now?
+
+Execution is becoming commoditized.
+
+Planning is becoming commoditized.
+
+Coding is becoming commoditized.
+
+The next frontier of intelligent systems is not execution.
+
+It is objective alignment.
+
+ODE exists because the bottleneck has shifted from solving problems to choosing the right problems.
+
+---
+
+# Agent Model Comparison
+
+```text
+Traditional Agent
+
+Task
+  ↓
+Plan
+  ↓
+Execute
+  ↓
+Reflect
+  ↓
+Done
+
+
+ODE Agent
+
+Objective
+  ↓
+Deliberation
+  ↓
+Design
+  ↓
+Execute
+  ↓
+Evaluate
+  ↓
+Objective Update
+  ↓
+Repeat
+```
 
 ---
 
@@ -50,28 +107,63 @@ In these scenarios, completing individual tasks does **not necessarily** move th
 ODE introduces a missing control layer.
 
 ```text
+                    Objective Memory
+                           │
+                           ▼
 Input
-    ↓
+   │
+   ▼
 Objective Discovery
-    ↓
+   │
+   ▼
 Objective Formalization
-    ↓
+   │
+   ▼
+────────────────────────────
+        Deliberation
+────────────────────────────
+   │
+   ▼
 Design
-    ↓
+   │
+   ▼
 Execution
-    ↓
+   │
+   ▼
 Feedback Collection
-    ↓
+   │
+   ▼
 Objective Evaluation
-    ↓
-Decision Filter
-    ↓
+   │
+   ▼
 Objective Update
-    ↓
-Loop
+   │
+   └──────────────► Objective Memory
 ```
 
 The objective is continuously refined while the system evolves.
+
+---
+
+# Core Runtime Model
+
+ODE is built around three core runtime components:
+
+```text
+Objective Memory
+        ↓
+Deliberation
+        ↓
+Objective Loop
+```
+
+Objective Memory preserves why the system acts.
+
+Deliberation decides what action deserves execution.
+
+Objective Loop executes, observes feedback, evaluates progress, and updates the objective.
+
+Together they form the ODE control layer.
 
 ---
 
@@ -137,6 +229,10 @@ Objective Formalization
 
 ↓
 
+Deliberation
+
+↓
+
 Design
 
 ↓
@@ -150,10 +246,6 @@ Feedback Collection
 ↓
 
 Objective Evaluation
-
-↓
-
-Decision Filter
 
 ↓
 
@@ -223,11 +315,11 @@ Objective Loop
 
 ├── Objective Discovery
 ├── Objective Formalization
+├── Deliberation
 ├── Design Generator
 ├── Execution Runner
 ├── Feedback Collector
 ├── Objective Evaluator
-├── Decision Filter
 └── Objective Updater
 ```
 
@@ -246,9 +338,11 @@ They may later become:
 
 ODE is currently an experimental research project.
 
-The first milestone focuses on building an MVP Objective Loop that can be integrated into existing coding agents.
+The first milestone focuses on defining the theory, vocabulary, and RFC foundation of objective-driven intelligence.
 
-Rather than replacing existing frameworks, ODE aims to become an additional **Objective Layer** that sits above planning and execution.
+Implementations may later appear as prompts, skills, runtimes, or agents.
+
+The core asset is the control theory itself.
 
 ---
 
@@ -269,11 +363,15 @@ Tomorrow:
 ```text
 Objective
     ↓
-Planning
+Deliberation
+    ↓
+Design
     ↓
 Execution
     ↓
 Feedback
+    ↓
+Objective Evaluation
     ↓
 Objective Evolution
 ```
@@ -302,44 +400,57 @@ Self-Evolving Agents
 
 ## Phase 1
 
-Objective Loop Skill
+Theory
 
-- Objective Discovery
-- Objective Evaluation
-- Decision Filter
-- Objective Report
+- Manifesto
+- RFCs
+- Core vocabulary
+- Control principles
 
 ---
 
 ## Phase 2
 
-Objective Runtime
+Prompt Runtime
 
-Persistent Objective State
-
-Continuous Loop
-
-Objective Memory
+- Objective prompts
+- Deliberation prompts
+- Objective reports
+- Agent-agnostic usage
 
 ---
 
 ## Phase 3
 
-Objective Engine
+Skill Runtime
 
-Dynamic Objective Update
-
-Multi-objective Optimization
-
-Objective Graph
+- Objective Loop Skill
+- Objective Memory Skill
+- Deliberation Skill
+- Runtime handoff patterns
 
 ---
 
 ## Phase 4
 
-ODE Agent Framework
+ODE Runtime
 
-Native objective-driven autonomous agents
+- Persistent Objective State
+- Objective Memory
+- Continuous Loop
+- Objective Evaluation
+- Objective Update
+
+---
+
+## Phase 5
+
+ODE Agent
+
+- Native objective-driven autonomous agents
+- Multi-objective optimization
+- Objective Graph
+- Self-evolving agents
 
 ---
 
@@ -348,10 +459,14 @@ Native objective-driven autonomous agents
 ```text
 ode/
 
+├── MANIFESTO.md
+
 ├── README.md
 
 ├── RFC/
-│   └── 0001-objective-driven-evolution.md
+│   ├── 0001-objective-driven-evolution.md
+│   ├── 0002-Objective-Memory.md
+│   └── 0003-Deliberation.md
 
 ├── docs/
 

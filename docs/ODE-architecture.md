@@ -10,11 +10,14 @@ ODE introduces a control layer above planning and execution.
 User Input
         │
         ▼
+Objective Memory
+        │
+        ▼
 Objective Loop
         │
  ┌──────┴──────────────┐
  │                     │
-Objective State    Decision Engine
+Objective State    Deliberation
  │                     │
  └──────┬──────────────┘
         ▼
@@ -32,6 +35,22 @@ Objective Loop
 ---
 
 # Components
+
+## Objective Memory
+
+Purpose:
+
+Preserve objective history across time, agents, and implementations.
+
+Output:
+
+- objective lineage
+- decision history
+- rejected alternatives
+- validated assumptions
+- objective drift records
+
+---
 
 ## Objective Discovery
 
@@ -57,6 +76,27 @@ Produces:
 - metrics
 - constraints
 - trade-offs
+
+---
+
+## Deliberation
+
+Purpose:
+
+Evaluate candidate actions before execution.
+
+Deliberation decides whether an action deserves to proceed into design and execution.
+
+Decision Filter is an internal part of Deliberation, responsible for choosing among candidate actions.
+
+Possible decisions:
+
+- Continue
+- Stop
+- Revise Design
+- Update Objective
+- Rollback
+- Ask User
 
 ---
 
@@ -122,23 +162,6 @@ Outputs:
 
 ---
 
-## Decision Filter
-
-The central controller.
-
-Possible decisions:
-
-- Continue
-- Stop
-- Revise Design
-- Update Objective
-- Rollback
-- Ask User
-
-Every major decision passes through this module.
-
----
-
 ## Objective Updater
 
 Updates the objective only when justified by evidence.
@@ -179,6 +202,9 @@ Each iteration reads from and writes to this state.
 Objective
       │
       ▼
+Deliberation
+      │
+      ▼
 Design
       │
       ▼
@@ -191,13 +217,50 @@ Feedback
 Evaluation
       │
       ▼
-Decision
-      │
-      ▼
 Objective Update
       │
       └───────────────► next iteration
 ```
+
+---
+
+# Runtime Modes
+
+ODE agents operate through several modes.
+
+## Objective Mode
+
+Discover and formalize the current objective.
+
+---
+
+## Deliberation Mode
+
+Evaluate candidate actions before execution.
+
+---
+
+## Execution Mode
+
+Perform the selected action.
+
+---
+
+## Feedback Mode
+
+Collect observable evidence.
+
+---
+
+## Evaluation Mode
+
+Measure progress toward the objective.
+
+---
+
+## Update Mode
+
+Refine objective state and memory.
 
 ---
 

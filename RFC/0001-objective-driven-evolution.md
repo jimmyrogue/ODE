@@ -115,6 +115,8 @@ Objective Discovery
 ↓
 Objective Formalization
 ↓
+Deliberation
+↓
 Design
 ↓
 Execution
@@ -122,8 +124,6 @@ Execution
 Feedback Collection
 ↓
 Objective Evaluation
-↓
-Decision Filter
 ↓
 Objective Update
 ↓
@@ -133,6 +133,34 @@ Repeat
 This loop never assumes the current objective is perfect.
 
 Instead, it continuously validates and refines it.
+
+---
+
+# Deliberation
+
+Deliberation is the stage between objective formalization and design.
+
+Its purpose is to determine whether a proposed action deserves execution.
+
+Planning answers:
+
+> How should we do this?
+
+Deliberation answers:
+
+> Should we do this at all?
+
+Reflection looks backward.
+
+Deliberation looks forward.
+
+Evaluation measures what happened.
+
+Deliberation decides what should happen next.
+
+Every significant action in ODE should pass through Deliberation before execution.
+
+Decision Filter is an internal part of Deliberation, responsible for choosing among candidate actions.
 
 ---
 
@@ -149,6 +177,14 @@ Not the implementation.
 ## Task
 
 A temporary action taken in pursuit of an objective.
+
+---
+
+## Deliberation
+
+The runtime mode that evaluates candidate actions before execution.
+
+It decides whether an action deserves to proceed into design and execution.
 
 ---
 
