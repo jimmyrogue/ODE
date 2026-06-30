@@ -6,7 +6,7 @@
 
 **Created:** 2026
 
-**Version:** 0.1
+**Version:** 0.2
 
 ---
 
@@ -279,6 +279,37 @@ These are fundamentally different.
 One records history.
 
 The other preserves direction.
+
+---
+
+# Objective Memory Is Not Context
+
+Context is what a system can see right now.
+
+Objective Memory is what allows the system to remain aligned across time.
+
+Context may include:
+
+- the current task,
+- recent messages,
+- open files,
+- local feedback,
+- or immediate constraints.
+
+Objective Memory preserves:
+
+- the current objective,
+- the reason the objective matters,
+- the lineage of objective changes,
+- the evidence behind those changes,
+- the assumptions currently being carried,
+- and known signs of drift.
+
+Context helps a system respond.
+
+Objective Memory helps a system continue.
+
+An ODE-compatible system must not treat temporary context as a substitute for Objective Memory.
 
 ---
 
@@ -620,6 +651,40 @@ Collectively they move the system away from its purpose.
 This makes Objective Drift difficult to detect using traditional reflection.
 
 ODE therefore records drift explicitly.
+
+---
+
+# Objective Drift vs Objective Evolution
+
+Objective change is not always drift.
+
+ODE distinguishes two cases.
+
+Objective Drift is change without preserved reason.
+
+Objective Evolution is change with memory, evidence, and lineage.
+
+```text
+Objective Drift:
+  The system starts optimizing a proxy without recording why.
+
+Objective Evolution:
+  The system updates the objective because feedback changed its understanding.
+```
+
+Objective Memory exists to make this distinction inspectable.
+
+An objective may evolve.
+
+But every meaningful objective change should preserve:
+
+- the previous objective,
+- the new objective,
+- the evidence that justified the change,
+- the assumptions that changed,
+- and the decision that accepted the transition.
+
+Without this preserved lineage, future systems cannot distinguish learning from drift.
 
 ---
 
