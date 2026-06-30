@@ -4,275 +4,317 @@
 
 # Overview
 
-ODE introduces a control layer above planning and execution.
+ODE is a control architecture for objective-driven intelligent systems.
+
+It does not replace planners, tools, models, or execution engines.
+
+It adds a control layer that keeps those capabilities aligned with an evolving objective.
 
 ```text
 User Input
-        │
-        ▼
-Objective Memory
-        │
-        ▼
-Objective Loop
-        │
- ┌──────┴──────────────┐
- │                     │
-Objective State    Deliberation
- │                     │
- └──────┬──────────────┘
-        ▼
-Sub Skills
-        ▼
-Execution Agent
-        ▼
+    ↓
+Objective Layer
+    ↓
+ODE Kernel
+    ↓
+┌──────────────────────────────────────────┐
+│ Objective Memory                         │
+│ Deliberation                             │
+│ Objective State                          │
+│ Feedback Interpretation                  │
+│ Objective Update                         │
+│ Objective Report                         │
+└──────────────────────────────────────────┘
+    ↓
+Delegated Execution Engine
+    ↓
 Environment
-        ▼
+    ↓
 Feedback
-        ▼
-Objective Loop
+    ↓
+ODE Kernel
+    ↓
+Objective Memory
 ```
+
+The Kernel may delegate action.
+
+It must not delegate purpose.
 
 ---
 
-# Components
+# Architectural Boundary
+
+ODE separates control from execution.
+
+## ODE Owns
+
+- objective continuity
+- objective memory
+- deliberation
+- decision records
+- drift detection
+- objective evaluation
+- objective updates
+- objective reports
+
+## Execution Engines Own
+
+- coding
+- research
+- browsing
+- tool usage
+- file editing
+- domain-specific implementation
+- external system interaction
+
+This boundary prevents the execution engine from becoming the source of purpose.
+
+---
+
+# Core Components
+
+## Objective Layer
+
+The Objective Layer sits above planning and execution.
+
+It asks:
+
+> Did this action move the system closer to the objective?
+
+The Objective Layer is the conceptual home for Objective Memory, Deliberation, Kernel control, feedback evaluation, and Objective Reports.
+
+---
+
+## ODE Kernel
+
+The Kernel is the minimal control core.
+
+It preserves the objective loop.
+
+It is small but opinionated.
+
+Its invariant is:
+
+> Action must remain accountable to an evolving objective.
+
+The Kernel coordinates modes.
+
+It does not perform all work itself.
+
+---
 
 ## Objective Memory
 
-Purpose:
+Objective Memory preserves direction across time.
 
-Preserve objective history across time, agents, and implementations.
+It stores:
 
-Output:
-
+- current objective
 - objective lineage
+- objective transitions
+- accepted assumptions
+- constraints
 - decision history
 - rejected alternatives
-- validated assumptions
-- objective drift records
+- feedback summaries
+- drift events
 
----
+Objective Memory is not temporary context.
 
-## Objective Discovery
+Context helps the system respond.
 
-Purpose:
-
-Infer the real objective behind the user's request.
-
-Output:
-
-- inferred objective
-- assumptions
-- anti-goals
-
----
-
-## Objective Formalization
-
-Converts objectives into measurable functions.
-
-Produces:
-
-- objective function
-- metrics
-- constraints
-- trade-offs
+Objective Memory helps the system continue.
 
 ---
 
 ## Deliberation
 
-Purpose:
+Deliberation evaluates candidate actions before execution.
 
-Evaluate candidate actions before execution.
-
-Deliberation decides whether an action deserves to proceed into design and execution.
-
-Decision Filter is an internal part of Deliberation, responsible for choosing among candidate actions.
+It decides whether an action deserves to become real.
 
 Possible decisions:
 
-- Continue
-- Stop
-- Revise Design
-- Update Objective
-- Rollback
-- Ask User
+- execute
+- refuse
+- defer
+- gather more evidence
+- revise action
+- update objective
+- ask user
+
+When Deliberation selects an action, it should produce a commitment record.
+
+That record preserves why the action deserved execution.
 
 ---
 
-## Design Generator
+## Design
 
-Produces candidate solutions.
+Design converts an accepted decision into an executable plan.
 
-Each solution includes:
+Design is downstream of Deliberation.
 
+It should preserve:
+
+- selected action
+- objective served
 - expected contribution
-- estimated cost
-- estimated risk
+- known risks
+- validation plan
+- reconsideration conditions
 
 ---
 
-## Execution Runner
+## Execution
 
-Delegates work to the underlying execution engine.
+Execution is delegated to the underlying engine.
 
-Possible engines:
+The execution engine may be Codex, Claude Code, Cursor, Kiro, a local runtime, or another system.
 
-- Claude Code
-- Codex
-- Cursor
-- Kiro
-- Local Runtime
+Execution produces artifacts and observable changes.
 
-ODE does not execute code itself.
+It does not directly update the objective.
 
 ---
 
-## Feedback Collector
+## Feedback
 
-Collects every available signal.
+Feedback collects evidence from the world.
 
 Examples:
 
 - tests
 - logs
-- screenshots
-- runtime metrics
+- metrics
 - benchmarks
 - user feedback
+- screenshots
+- runtime observations
+
+Feedback is evidence.
+
+Evaluation turns evidence into judgment.
 
 ---
 
-## Objective Evaluator
+## Objective Evaluation
 
-Compares:
+Evaluation compares observed reality with the active objective.
 
-Current State
+It must distinguish:
 
-vs
+- task completion
+- local success
+- objective progress
+- objective drift
+- learning from failure
 
-Desired Objective
+An action can succeed locally while failing the objective.
 
-Outputs:
-
-- alignment score
-- progress
-- drift
-- observations
-
----
-
-## Objective Updater
-
-Updates the objective only when justified by evidence.
-
-The objective is treated as persistent state.
+An action can fail locally while improving objective understanding.
 
 ---
 
-# State
+## Objective Report
 
-ODE maintains a long-lived Objective State.
+Every completed loop should produce an Objective Report.
+
+The report is not a receipt for completed work.
+
+It is the accountable trace of the objective loop.
+
+It records:
+
+- objective state
+- execution summary
+- decision summary
+- evaluation
+- objective evolution
+- next iteration
+
+Reports feed Objective Memory.
+
+---
+
+# Kernel State
+
+ODE maintains persistent Kernel State.
 
 ```yaml
-objective_state:
+kernel_state:
+  runtime_mode:
+  loop_count:
 
-objective:
+  objective_state:
+    current_objective:
+    confidence:
+    assumptions:
+    constraints:
+    lineage:
 
-objective_function:
+  deliberation_state:
+    candidate_actions:
+    selected_action:
+    rejected_actions:
+    commitment:
+    refusal_reason:
 
-current_design:
+  execution_state:
+    plan:
+    actions_taken:
+    artifacts:
 
-feedback_history:
+  feedback_state:
+    observations:
+    metrics:
+    errors:
 
-evaluation_history:
+  evaluation_state:
+    alignment_score:
+    surface_success:
+    objective_progress:
+    drift_detected:
 
-decision_history:
+  memory:
+    objective_memory:
+    decision_memory:
+    feedback_memory:
 
-loop_count:
+  objective_report:
 ```
 
-Each iteration reads from and writes to this state.
+The exact representation is implementation-specific.
+
+The semantic state must be preserved.
 
 ---
 
 # Data Flow
 
 ```text
-Objective
-      │
-      ▼
+Objective Memory
+      ↓
+Objective State
+      ↓
 Deliberation
-      │
-      ▼
+      ↓
+Decision / Commitment
+      ↓
 Design
-      │
-      ▼
+      ↓
 Execution
-      │
-      ▼
+      ↓
 Feedback
-      │
-      ▼
+      ↓
 Evaluation
-      │
-      ▼
-Objective Update
-      │
-      └───────────────► next iteration
+      ↓
+Objective Report
+      ↓
+Objective Memory
+      ↓
+Next Loop
 ```
 
----
-
-# Runtime Modes
-
-ODE agents operate through several modes.
-
-## Objective Mode
-
-Discover and formalize the current objective.
-
----
-
-## Deliberation Mode
-
-Evaluate candidate actions before execution.
-
----
-
-## Execution Mode
-
-Perform the selected action.
-
----
-
-## Feedback Mode
-
-Collect observable evidence.
-
----
-
-## Evaluation Mode
-
-Measure progress toward the objective.
-
----
-
-## Update Mode
-
-Refine objective state and memory.
-
----
-
-# Extensibility
-
-Each module should remain independent.
-
-Future implementations may replace prompt-based modules with:
-
-- sub agents
-- MCP tools
-- external evaluators
-- learned objective models
-
-without changing the overall architecture.
+The loop is complete only after the report and memory update are produced.

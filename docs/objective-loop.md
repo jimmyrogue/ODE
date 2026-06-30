@@ -4,9 +4,13 @@
 
 # Purpose
 
-Objective Loop is the runtime control algorithm of ODE.
+The Objective Loop is the control cycle of ODE.
 
-It continuously aligns execution with the current objective.
+It continuously aligns action with the current objective, interprets feedback, and updates objective memory.
+
+The loop is not complete when execution ends.
+
+The loop is complete only after feedback has been evaluated, an Objective Report has been produced, and Objective Memory has been updated.
 
 ---
 
@@ -14,42 +18,28 @@ It continuously aligns execution with the current objective.
 
 ```text
 Input
-
 ↓
-
 Objective Discovery
-
 ↓
-
 Objective Formalization
-
 ↓
-
 Deliberation
-
 ↓
-
+Decision / Commitment
+↓
 Design
-
 ↓
-
 Execution
-
 ↓
-
 Feedback Collection
-
 ↓
-
 Objective Evaluation
-
 ↓
-
-Objective Update
-
+Objective Report
 ↓
-
-Loop
+Objective Memory Update
+↓
+Next Loop
 ```
 
 ---
@@ -60,27 +50,29 @@ Question:
 
 > What is the user actually trying to achieve?
 
-Do not accept the literal request immediately.
+Do not assume the literal task is the objective.
 
-Infer the underlying value.
+Infer the underlying value, desired future state, and anti-goals.
 
 ---
 
 # Step 2 — Objective Formalization
 
-Transform abstract goals into measurable objectives.
+Transform the discovered objective into an evaluable objective state.
 
-Example:
+The objective state may include:
 
-Instead of:
+- primary objective
+- secondary objectives
+- success signals
+- proxy metrics
+- constraints
+- assumptions
+- tradeoffs
 
-> Better UX
+The objective does not need to be mathematical.
 
-Produce:
-
-- shorter completion time
-- fewer failed actions
-- higher retention
+It must be explicit enough to evaluate future action.
 
 ---
 
@@ -93,16 +85,51 @@ Deliberation asks:
 - Should this action be performed at all?
 - Does it contribute to the objective?
 - Is there another action with higher impact?
-- What trade-offs does this action introduce?
+- What tradeoffs does this action introduce?
 - Is the available evidence strong enough?
+- Should the system refuse, defer, or gather more evidence?
+- Should the objective itself be updated before acting?
 
-Decision Filter is an internal part of Deliberation, responsible for choosing among candidate actions.
+Deliberation may produce:
+
+- execute
+- refuse
+- defer
+- gather more evidence
+- revise action
+- update objective
+- ask user
+
+Execution is not the default.
+
+Execution is the result of successful deliberation.
 
 ---
 
-# Step 4 — Design
+# Step 4 — Decision / Commitment
 
-Generate multiple candidate approaches.
+When Deliberation selects an action, it should preserve a commitment record.
+
+The commitment record should include:
+
+- selected action
+- objective served
+- expected contribution
+- evidence used
+- assumptions accepted
+- alternatives rejected
+- known risks
+- reconsideration conditions
+
+This record allows later evaluation to inspect whether the action was justified.
+
+---
+
+# Step 5 — Design
+
+Convert the selected action into an executable plan.
+
+Design should preserve the objective rationale.
 
 Each design should estimate:
 
@@ -110,26 +137,32 @@ Each design should estimate:
 - implementation complexity
 - execution cost
 - risk
+- validation method
 
 ---
 
-# Step 5 — Execution
+# Step 6 — Execution
 
-Delegate implementation to the execution agent.
+Delegate implementation to the execution engine.
 
 Execution may involve:
 
 - coding
 - research
 - planning
-- API calls
+- external system interaction
 - tool usage
+- file changes
+
+Execution produces artifacts and observable change.
+
+Execution does not directly update the objective.
 
 ---
 
-# Step 6 — Feedback Collection
+# Step 7 — Feedback Collection
 
-Collect all observable evidence.
+Collect observable evidence.
 
 Never rely on success alone.
 
@@ -140,99 +173,127 @@ Evidence includes:
 - metrics
 - user behavior
 - runtime data
+- external feedback
+- manual review
+
+Feedback is evidence.
+
+It becomes judgment only after evaluation.
 
 ---
 
-# Step 7 — Objective Evaluation
+# Step 8 — Objective Evaluation
 
 Ask:
 
-Did execution improve the objective?
+> Did execution improve the objective?
 
 Important distinction:
 
+```text
 Task Success
-
 ≠
+Objective Progress
+```
 
-Objective Success
+Evaluation should distinguish:
 
----
-
-# Step 8 — Objective Update
-
-Objectives should change only when supported by evidence.
-
-Typical reasons:
-
-- assumptions invalid
-- wrong proxy metric
-- better objective discovered
-- user values changed
+- surface task completion
+- local success
+- objective progress
+- objective drift
+- learning from failure
+- confidence change
 
 ---
 
-# Objective Report
+# Step 9 — Objective Report
 
-Every iteration must produce:
+Every completed loop must produce an Objective Report.
+
+An Objective Report should include:
 
 ```yaml
 objective_report:
-
-real_objective:
-
-current_action:
-
-alignment_score:
-
-objective_progress:
-
-surface_task_completed:
-
-objective_drift:
-
-feedback_summary:
-
-deliberation_decision:
-
-next_action:
-
-should_continue:
-
-should_update_objective:
+  metadata:
+  objective:
+  execution:
+  decision:
+  evaluation:
+  objective_update:
+  next_iteration:
 ```
 
-The next iteration must consume this report before planning again.
+The report should answer:
+
+- What objective was active?
+- What action was chosen?
+- Why was it chosen?
+- What happened?
+- Did the task succeed?
+- Did the objective progress?
+- Did drift occur?
+- What should happen next?
 
 ---
 
-# Core Prompt
+# Step 10 — Objective Memory Update
 
-Before every iteration, the controller asks:
+Update Objective Memory after the report is produced.
 
-> What is the real objective?
+Memory should preserve:
 
-> Did the last action move closer to that objective?
+- current objective
+- objective lineage
+- transition history
+- decision history
+- feedback summary
+- drift events
+- rejected alternatives
 
-> Am I optimizing a proxy instead of the real objective?
+Objective change must preserve evidence and reason.
 
-> What action deserves execution?
+Without lineage, future systems cannot distinguish evolution from drift.
 
-> Should I do this at all?
+---
 
-> Is there a higher-impact action available?
+# Controller Questions
 
-> Should the objective itself evolve?
+Before each significant action, the controller should ask:
 
-Only after answering these questions may the next iteration begin.
+> What is the active objective?
+
+> What task is being proposed?
+
+> Does the task serve the objective?
+
+> What evidence supports this action?
+
+> What assumptions are being accepted?
+
+> What should be refused or deferred?
+
+> What would count as objective progress?
+
+> What would count as objective drift?
+
+> What must be remembered for the next loop?
+
+These questions describe controller responsibilities.
+
+They are not an input template.
 
 ---
 
 # Success Criteria
 
-An Objective Loop is successful when:
+An Objective Loop is healthy when:
 
-- every iteration increases objective alignment,
+- actions remain downstream of objectives,
+- significant actions pass through deliberation,
+- non-execution decisions are allowed,
+- feedback is interpreted against the objective,
+- task success is distinguished from objective progress,
 - objective drift is detected early,
-- unnecessary work is avoided,
-- and the agent continuously converges toward the real objective rather than merely completing tasks.
+- objective changes preserve lineage,
+- and every loop produces an Objective Report.
