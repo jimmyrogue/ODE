@@ -6,7 +6,7 @@
 
 **Created:** 2026
 
-**Version:** 0.1
+**Version:** 0.2
 
 ---
 
@@ -26,7 +26,7 @@ Previous RFCs introduced the theoretical foundations of ODE.
 
 This RFC introduces the **ODE Kernel**.
 
-The ODE Kernel is the minimum runtime required for an objective-driven intelligent system.
+The ODE Kernel is the minimal control core required for an objective-driven intelligent system.
 
 It is not an agent.
 
@@ -37,6 +37,12 @@ It is not a language model.
 It is the control core responsible for maintaining objective continuity throughout the entire lifecycle of an intelligent system.
 
 Just as an operating system kernel coordinates processes, memory, scheduling, and interrupts, the ODE Kernel coordinates objectives, deliberation, execution, evaluation, and evolution.
+
+The Kernel should remain small.
+
+It should be opinionated about one invariant:
+
+> Action must remain accountable to an evolving objective.
 
 ---
 
@@ -65,7 +71,19 @@ ODE Kernel exists to answer that question.
 
 # Design Goals
 
-The Kernel should satisfy five requirements.
+The Kernel should satisfy six requirements.
+
+## Minimal Control Core
+
+The Kernel should contain only the control responsibilities required to preserve the objective loop.
+
+It should not absorb domain-specific execution, planning, tool use, or implementation details.
+
+Smallness is a design requirement.
+
+The Kernel must remain understandable enough to audit objective continuity.
+
+---
 
 ## Objective Continuity
 
@@ -116,6 +134,26 @@ Examples include:
 The Kernel governs them.
 
 It does not replace them.
+
+---
+
+# Kernel Boundary
+
+The Kernel owns objective continuity.
+
+Execution engines own domain execution.
+
+The Kernel may delegate action.
+
+The Kernel must not delegate purpose.
+
+This boundary is fundamental.
+
+If no component owns objective continuity, the system may still execute but it is no longer objective-driven.
+
+The Kernel therefore asks, before and after significant action:
+
+> Does this action still belong to the objective?
 
 ---
 
@@ -417,6 +455,8 @@ The ODE Kernel is responsible for:
 - enforcing runtime rules
 - detecting drift
 - updating objective state
+- interpreting feedback against the active objective
+- preserving the relationship between objective, action, feedback, and update
 
 The Kernel is **not** responsible for:
 
@@ -424,6 +464,8 @@ The Kernel is **not** responsible for:
 - generating plans
 - executing tools
 - solving domain-specific problems
+- owning all memory
+- replacing specialized planners
 
 Those capabilities belong to execution engines.
 
@@ -445,10 +487,9 @@ It is therefore the operational specification of ODE.
 
 # Future Extensions
 
-Future RFCs will extend the Kernel with:
+Future RFCs may extend the Kernel with:
 
 - Objective Evaluation
-- Objective Reports
 - Objective Graph
 - Multi-objective Scheduling
 - Value Memory
