@@ -388,7 +388,7 @@ The loop is not an artificial invention.
 
 It is a pattern already present in human intelligence.
 
-ODE gives that pattern a name and a discipline.
+A serious theory of intelligence must begin by noticing this pattern before naming it.
 
 ---
 
@@ -472,11 +472,13 @@ They are made of evolving objectives.
 
 ---
 
-# 12. The ODE Interpretation
+# 12. The Structural Interpretation
 
-ODE begins from the claim that intelligence has shape.
+We can now state the deeper claim.
 
-That shape is not the sequence of operations an agent performs.
+Intelligence has shape.
+
+That shape is not the sequence of operations a system performs.
 
 It is the relationship between objective, reality, action, and feedback.
 
@@ -508,7 +510,7 @@ Feedback is not a report after the fact.
 
 It is the material from which better objectives are formed.
 
-This is why ODE does not start with tools.
+This is why a theory of intelligence should not start with tools.
 
 It starts with the shape of thought itself.
 
@@ -537,8 +539,6 @@ It keeps memory connected to meaning.
 It allows feedback to revise not only execution, but direction.
 
 It makes room for objectives to evolve.
-
-ODE is built on this view.
 
 The next question is therefore unavoidable:
 
