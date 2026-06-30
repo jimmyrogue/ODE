@@ -6,7 +6,7 @@
 
 **Created:** 2026
 
-**Version:** 0.1
+**Version:** 0.2
 
 ---
 
@@ -151,6 +151,8 @@ kernel_state:
     selected_action:
     rejected_actions:
     decision_reason:
+    commitment:
+    refusal_reason:
 
   execution_state:
     plan:
@@ -446,11 +448,14 @@ Output
 
 ```yaml
 decision:
+  decision_type:
   selected_action:
   reason:
   expected_objective_contribution:
   known_risks:
   rejected_alternatives:
+  required_evidence:
+  reconsideration_conditions:
   confidence:
 ```
 
@@ -458,7 +463,19 @@ Notes
 
 The exact scoring method is implementation-specific.
 
-The invariant is that the selected action must be justified in relation to the current objective.
+`decision_type` should support at least:
+
+- execute
+- refuse
+- defer
+- gather_more_evidence
+- update_objective
+
+The invariant is that the decision must be justified in relation to the current objective.
+
+If the decision is `execute`, the selected action must produce a commitment record.
+
+If the decision is not `execute`, the refusal or deferral reason must be preserved.
 
 ---
 
@@ -797,6 +814,12 @@ Objectives must be versioned, not overwritten.
 ## Invariant 6
 
 The Kernel may delegate execution, but must not delegate objective continuity.
+
+## Invariant 7
+
+Deliberation must be able to produce a non-execution decision.
+
+An ODE-compatible runtime must preserve why an action was refused, deferred, or blocked on missing evidence.
 
 ---
 
