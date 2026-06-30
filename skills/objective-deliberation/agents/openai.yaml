@@ -1,0 +1,4 @@
+interface:
+  display_name: "Objective Deliberation"
+  short_description: "Choose the next objective-aligned decision"
+  default_prompt: "Use $objective-deliberation to deliberate on the latest work and choose the next objective-aligned decision."
