@@ -1,7 +1,7 @@
 # RFC 0001 — Objective Driven Evolution (ODE)
 
 **Status:** Draft  
-**Version:** 0.1
+**Version:** 0.2
 
 ---
 
@@ -24,6 +24,12 @@ Execution changes the world.
 Feedback changes understanding.
 
 Objectives evolve.
+
+ODE defines the missing control layer that preserves this relationship across time:
+
+> **Objective Layer**
+
+The Objective Layer is responsible for keeping action, feedback, memory, and objective evolution aligned.
 
 ---
 
@@ -54,13 +60,17 @@ The real objective is:
 
 > Help users successfully discover and adopt a commercially usable name.
 
-ODE attempts to keep the agent aligned with the latter.
+ODE attempts to keep the system aligned with the latter.
+
+This is the purpose of the Objective Layer.
+
+It prevents a system from treating task completion as objective progress.
 
 ---
 
 # First Principles
 
-ODE is built upon five assumptions.
+ODE is built upon six assumptions.
 
 ## Principle 1
 
@@ -106,6 +116,16 @@ The system should continuously question:
 
 ---
 
+## Principle 6
+
+Objective continuity is a system responsibility.
+
+An objective-driven system must preserve why it acts, not merely what it did.
+
+Without objective continuity, execution gradually collapses back into task completion.
+
+---
+
 # The ODE Loop
 
 ```text
@@ -133,6 +153,15 @@ Repeat
 This loop never assumes the current objective is perfect.
 
 Instead, it continuously validates and refines it.
+
+The loop is governed by the Objective Layer.
+
+The Objective Layer ensures that:
+
+- tasks remain downstream of objectives,
+- feedback is interpreted against objectives,
+- objective changes are explicit,
+- and every loop preserves objective continuity.
 
 ---
 
@@ -177,6 +206,30 @@ Not the implementation.
 ## Task
 
 A temporary action taken in pursuit of an objective.
+
+Tasks are implementations.
+
+They may succeed locally while failing to advance the objective.
+
+---
+
+## Objective Layer
+
+The control layer responsible for preserving, evaluating, and evolving objectives across execution loops.
+
+The Objective Layer sits above planning and execution.
+
+It asks:
+
+> Did this action move the system closer to the objective?
+
+---
+
+## Objective Drift
+
+Objective Drift occurs when a system gradually begins optimizing something different from its intended objective.
+
+Objective Drift is a first-class failure mode in ODE.
 
 ---
 
@@ -231,6 +284,10 @@ ODE asks:
 Traditional agents optimize completion.
 
 ODE optimizes alignment.
+
+Task success is not sufficient.
+
+Objective progress is the measure that matters.
 
 ---
 
