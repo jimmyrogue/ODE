@@ -48,6 +48,38 @@ This book explores that question.
 
 ---
 
+# Why Now?
+
+For most of software history, execution was expensive.
+
+Writing code was expensive.
+
+Changing systems was expensive.
+
+Exploring alternatives was expensive.
+
+AI agents are changing that.
+
+Execution is becoming cheaper.
+
+Planning is becoming cheaper.
+
+Code generation is becoming cheaper.
+
+But as execution becomes cheaper, the cost of choosing the wrong direction becomes more important.
+
+The bottleneck shifts from:
+
+> Can we do this?
+
+To:
+
+> Should we do this?
+
+ODE exists because intelligent systems need a stronger way to preserve, evaluate, and evolve their objectives.
+
+---
+
 # A Different Way to Think
 
 Most software systems are task-driven.
@@ -92,6 +124,22 @@ Everything in ODE follows from these observations.
 
 ---
 
+# What This Book Is Not
+
+This book is not a product manual.
+
+It is not a list of API references.
+
+It is not a collection of prompts.
+
+It does not begin with implementation because ODE is not primarily an implementation.
+
+ODE begins as a way of thinking.
+
+Implementation comes later.
+
+---
+
 # How To Read This Book
 
 The book is organized in layers.
@@ -102,11 +150,15 @@ Implementation details are intentionally postponed.
 
 The goal is to understand the paradigm before the mechanics.
 
+Readers interested in specifications should read the RFCs in parallel.
+
+Readers interested in intuition should begin here.
+
 ---
 
 # Relationship To The RFCs
 
-The ODE project contains two complementary documents.
+The ODE project contains two complementary document types.
 
 ## The Book
 
@@ -166,15 +218,89 @@ Deliberation
 ↓
 
 Chapter 7
-Objective-Driven Systems
+The ODE Kernel
 
 ↓
 
 Chapter 8
+Objective Reports
+
+↓
+
+Chapter 9
+Objective-Driven Systems
+
+↓
+
+Chapter 10
 The Future of Objective-Driven Intelligence
 ```
 
 RFCs may be read in parallel for readers interested in implementation.
+
+---
+
+# Chapter Map
+
+## Chapter 1 — The Missing Layer of Intelligence
+
+Why capable agents still fail when they execute without objective alignment.
+
+## Chapter 2 — Thinking in Objectives
+
+How to reason from objectives instead of tasks.
+
+## Chapter 3 — Objectives vs Tasks
+
+Why tasks are temporary but objectives persist.
+
+## Chapter 4 — Why Reflection Is Not Enough
+
+Why looking backward cannot replace deciding what should happen next.
+
+## Chapter 5 — Objective Memory
+
+Why intelligent systems must remember purpose, not only facts.
+
+## Chapter 6 — Deliberation
+
+How an agent decides which change deserves to exist.
+
+## Chapter 7 — The ODE Kernel
+
+How Objective Memory, Deliberation, Execution, Feedback, and Evaluation become one runtime loop.
+
+## Chapter 8 — Objective Reports
+
+Why every loop should leave behind a standard explanation of what changed, why it changed, and what should happen next.
+
+## Chapter 9 — Objective-Driven Systems
+
+How ODE applies beyond coding agents.
+
+## Chapter 10 — The Future of Objective-Driven Intelligence
+
+What happens when agents can preserve, evaluate, and evolve objectives over time.
+
+---
+
+# The Reader Promise
+
+After reading this book, you should be able to see AI agents differently.
+
+Not as tools that complete tasks.
+
+Not as systems that merely follow instructions.
+
+But as evolving systems that must continuously answer:
+
+> What objective am I optimizing?
+
+> Why does this objective matter?
+
+> Did the latest action move closer to it?
+
+> Should the objective itself evolve?
 
 ---
 
